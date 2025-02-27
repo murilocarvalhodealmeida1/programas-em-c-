@@ -8,6 +8,7 @@ int main() {
     int escolha2;
     int submenu2;
     int submenu3;
+    do{
     printf("Qual submenu? Escolha entre 1 , 2 ou 3: ");
     scanf("%d" , &escolha);
     if(escolha == 1) {
@@ -19,15 +20,17 @@ int main() {
         printf("Muito bem, você cadastrou os produtos!\n");
         printf("Você cadastrou esta quantidade de produtos: %d \n" , qd1);
     }else if (escolha == 2){
-        printf("A quantidade de produtos no estoque é: %d" , qd1);
+        printf("A quantidade de produtos no estoque é: %d \n" , qd1);
     
         
     }else if(escolha == 3){
         printf("Este é o menu que fecha o programa!\n");
-        printf("É só fechar o programa seu imbecil!");
+        printf("É só fechar o programa seu imbecil!\n");
         
     }
+    }
     
+    while (escolha != '1');
     
     return 0;
 }
