@@ -26,7 +26,8 @@ int main() {
         printf("Este é o menu do estoque!\n");
         printf("A quantidade de produtos no estoque é: %d \n" , qd1);
         printf("----------------------------------------------------------\n");
-    
+/*arruma esse 3, quando o usuario aperta 3 ele quer SAIR, TERMINAR O PROGRAMA*/
+
     }else if(escolha == 3){
         printf("Este é o menu que fecha o programa!\n");
         printf("É só fechar o programa seu imbecil!\n");
