@@ -8,9 +8,10 @@ int main() {
     int escolha2;
     int submenu2;
     int submenu3;
+    int remove;
     do{
     printf("O primeiro é o cadastro dos produtos, o segundo é o estoque e o terceiro é para sair!\n");
-    printf("Qual submenu? Escolha entre 1 , 2 ou 3: ");
+    printf("Qual submenu? Escolha entre 1 , 2 , 3 ou 4: ");
     scanf("%d" , &escolha);
     printf("----------------------------------------------------------\n");
     if(escolha == 1) {
@@ -32,8 +33,12 @@ int main() {
         printf("Este é o menu que fecha o programa!\n");
         printf("É só fechar o programa seu imbecil!\n");
         printf("----------------------------------------------------------\n");
-        
-    }
+        }else if(escolha == 4){
+            printf("Esse programa remove produtos do estoque.\n");
+            printf("Digite quantos do produto você quer remover: ");
+            scanf("%d" , &remove);
+            qd1 = qd1 - remove;
+        }
     }
     
     while (escolha != '1');
