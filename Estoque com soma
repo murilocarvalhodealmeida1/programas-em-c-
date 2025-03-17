@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int main() {
+    int cp1 = 0;
+    int qd1 = 0;
+    int ad1 = 0;
+    int total = 0;
+    int submenu1;
+    int escolha;
+    int escolha2;
+    int submenu2;
+    int submenu3;
+    int remove;
+    int add;
+    do{
+    printf("O primeiro é o cadastro dos produtos, o segundo é o estoque e o terceiro é para sair!\n");
+    printf("Qual submenu? Escolha entre 1(Incluir algo diferente e cancela a quantidade anterior) , 2 , 3 ou 4: ");
+    scanf("%d" , &escolha);
+    printf("----------------------------------------------------------\n");
+    if(escolha == 1) {
+        printf("Este é o menu do cadastro de produtos!\n");
+        printf("Digite o código do produto: ");
+        scanf("%d" , &cp1);
+        printf("Digite a quantidade de produtos adicionados: ");
+        scanf("%d" , &qd1);
+        printf("Muito bem, você cadastrou os produtos!\n");
+        printf("Você cadastrou esta quantidade de produtos: %d \n" , qd1);
+        printf("Seu total é: %d" , total);
+        printf("----------------------------------------------------------\n");
+    }else if (escolha == 2){
+        printf("Este é o menu do estoque!\n");
+        printf("A quantidade de produtos no estoque é: %d \n" , qd1);
+        printf("Seu total é: %d \n" , total);
+/*arruma esse 3, quando o usuario aperta 3 ele quer SAIR, TERMINAR O PROGRAMA*/
+
+    }else if(escolha == 3){
+        printf("Quer adicionar mais produtos ao total?\n");
+        printf("Digite a quantidade de produtos que você quer adicionar. Seu total é: %d \n" , qd1);
+        printf("----------------------------------------------------------\n");
+        printf("Qual Quantidade você quer adicionar?: ");
+        scanf("%d" , &ad1);
+        total = qd1 + ad1;
+        printf("Seu total é: %d \n" , total);
+        printf("----------------------------------------------------------\n");
+        
+        }else if(escolha == 4){
+            printf("Esse programa remove produtos do estoque.\n");
+            printf("Digite quantos do produto você quer remover: ");
+            scanf("%d" , &remove);
+            qd1 = qd1 - remove;
+        }
+    }
+    
+    while (escolha != '1');
+    
+    return 0;
+}
