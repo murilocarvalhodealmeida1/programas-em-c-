@@ -1,3 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int qd1 = 0;
+    int total = 0;
+    int cp1 = 0;
+    int qd1 = 0;
+    int submenu1;
+    int escolha;
+    int escolha2;
+    int submenu2;
+    int submenu3;
+    int remove;
+    do{
+    printf("O primeiro é o cadastro dos produtos, o segundo é o estoque e o terceiro é para sair!\n");
+    printf("Qual submenu? Escolha entre 1 , 2 , 3 ou 4: ");
+    scanf("%d" , &escolha);
+    printf("----------------------------------------------------------\n");
+
 //início das condições
     //condição de acesso ao menu do cadastro do produto
     if(escolha == 1) {
