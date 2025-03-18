@@ -38,6 +38,8 @@ int main() {
             printf("Digite quantos do produto você quer remover: ");
             scanf("%d" , &remove);
             qd1 = qd1 - remove;
+            else if(cp1 <= 0){
+            printf("Você está sem produtos");
         }
     }
     
