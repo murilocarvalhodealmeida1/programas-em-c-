@@ -16,7 +16,7 @@ int main() {
     
     do{
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("    O primeiro é o cadastro dos produtos, o segundo é o estoque e o terceiro é para adicionar produtos ao estoque o quarto é para remover produtos ao estoque e o quinto é para fechar o programa!\n");
+    printf(" -> O primeiro é o cadastro dos produtos;\n -> O segundo é o estoque;\n -> O terceiro é para adicionar produtos ao estoque;\n -> quarto é para remover produtos ao estoque;\n -> O quinto é para fechar o programa!\n");
     printf("-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-\n");
     //dá a opção dos menu's para o usuário
     printf("Qual submenu? Escolha entre 1 , 2 , 3 , 4  ou 5: ");
@@ -60,8 +60,11 @@ int main() {
             printf("Digite quantos do produto você quer remover: ");
             scanf("%d" , &remove);
             qd1 = qd1 - remove;
+            
+            //condição apra o menu de fechar o programa
+            
         }else if(escolha == 5){
-            printf("Aqui ta encerrando!");
+            printf("Aqui acabou!");
             return 0;
         }
     }
