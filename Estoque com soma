@@ -1,18 +1,23 @@
 #include <stdio.h>
 
 int main() {
-    int ad1 = 0;
-    int qd1 = 0;
-    int total = 0;
-    int cp1 = 0;
-    int submenu1;
-    int escolha;
-    int escolha2;
-    int submenu2;
-    int submenu3;
-    int remove;
+    int ad1 = 0; //declara a variável de adição
+    int qd1 = 0;//declara a variável de quantidade produto
+    int total = 0;//declara a variável do total de itans
+    int cp1 = 0;//delara a variável do codigo produto
+    int submenu1;//declara o menu 1
+    int escolha;//declara a variável de escolha
+    int escolha2;//declara a segunda variável de escolha
+    int submenu2;//declara o submenu 2
+    int submenu3;//declara o submenu 3
+    int remove;//declara a varivel de remover itens do estoque
+    
+    //início do loop do programa
+    
     do{
+        
     printf("O primeiro é o cadastro dos produtos, o segundo é o estoque e o terceiro é para sair!\n");
+    //dá a opção dos menu's para o usuário
     printf("Qual submenu? Escolha entre 1 , 2 , 3 ou 4: ");
     scanf("%d" , &escolha);
     printf("----------------------------------------------------------\n");
@@ -54,6 +59,7 @@ int main() {
         }
     }
     //fim das condições
+    //fim do loop do programa
     while (escolha != '1');
     
     return 0;
