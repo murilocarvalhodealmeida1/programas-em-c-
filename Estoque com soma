@@ -16,7 +16,7 @@ int main() {
     
     do{
         
-    printf("O primeiro é o cadastro dos produtos, o segundo é o estoque e o terceiro é para sair!\n");
+    printf("O primeiro é o cadastro dos produtos, o segundo é o estoque e o terceiro é para adicionar produtos ao estoque o quarto é para remover produtos ao estoque!\n");
     //dá a opção dos menu's para o usuário
     printf("Qual submenu? Escolha entre 1 , 2 , 3 ou 4: ");
     scanf("%d" , &escolha);
@@ -37,10 +37,13 @@ int main() {
     //condição de acesso par ao menu do estoque
     }else if (escolha == 2){
         printf("Este é o menu do estoque!\n");
+        if (qd1 < 0){
+            qd1 = 0;
+        }
         printf("A quantidade de produtos no estoque é: %d \n" , qd1);
         printf("Seu total é: %d \n" , total);
 
-//condição de acesso para o menu de adição
+//condição de acesso para o menu de adição1
     }else if(escolha == 3){
         printf("Quer adicionar mais produtos ao total?\n");
         printf("Digite a quantidade de produtos que você quer adicionar. Seu total é: %d \n" , qd1);
