@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 int main() {
+    int ad1 = 0;
     int qd1 = 0;
     int total = 0;
     int cp1 = 0;
-    int qd1 = 0;
     int submenu1;
     int escolha;
     int escolha2;
