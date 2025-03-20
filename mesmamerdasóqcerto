@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+char escolha;
+int controle_estoques;
+int controle_financeiro;
+int vendas;
+int sair;
+
+int main() {
+    
+    printf("-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("O que você quer acessar?\n -> Controle de Estoque; (a)\n -> Controle Financeiro; (b)\n -> Vendas (c)\n -> Sair. (d)");
+    printf("-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("Escolha o menu -> ");
+    scanf("%c" , &escolha);
+    
+    if (escolha == 'a' || escolha == 'A' ){
+        printf("A");
+    }
+    
+    
+    return 0;
+}
