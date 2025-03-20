@@ -1,4 +1,4 @@
-#include <stdio.h>
+##include <stdio.h>
 
 int main() {
     int ad1 = 0; //declara a variável de adição
@@ -16,12 +16,12 @@ int main() {
     
     do{
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf(" -> O primeiro é o cadastro dos produtos;\n -> O segundo é o estoque;\n -> O terceiro é para adicionar produtos ao estoque;\n -> quarto é para remover produtos ao estoque;\n -> O quinto é para fechar o programa!\n");
+    printf(" -> O primeiro é o cadastro dos produtos;\n -> O segundo é o estoque;\n -> O terceiro é para adicionar produtos ao estoque;\n -> O quarto é para remover produtos ao estoque;\n -> O quinto é para fechar o programa!\n");
     printf("-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-\n");
     //dá a opção dos menu's para o usuário
     printf("Qual submenu? Escolha entre 1 , 2 , 3 , 4  ou 5: ");
     scanf("%d" , &escolha);
-    printf("----------------------------------------------------------\n");
+    printf("---------------------------------------------------------------------------\n");
 
 //início das condições
     //condição de acesso ao menu do cadastro do produto
@@ -34,7 +34,7 @@ int main() {
         printf("Muito bem, você cadastrou os produtos!\n");
         printf("Você cadastrou esta quantidade de produtos: %d \n" , qd1);
         printf("Seu total é: %d\n" , total);
-        printf("----------------------------------------------------------\n");
+        printf("--------------------------------------------------------------------\n");
     //condição de acesso par ao menu do estoque
     }else if (escolha == 2){
         printf("Este é o menu do estoque!\n");
@@ -48,7 +48,7 @@ int main() {
     }else if(escolha == 3){
         printf("Quer adicionar mais produtos ao total?\n");
         printf("Digite a quantidade de produtos que você quer adicionar. Seu total é: %d \n" , qd1);
-        printf("----------------------------------------------------------\n");
+        printf("----------------------------------------------------------------------\n");
         printf("Qual Quantidade você quer adicionar?: ");
         scanf("%d" , &ad1);
         total = qd1 + ad1;
