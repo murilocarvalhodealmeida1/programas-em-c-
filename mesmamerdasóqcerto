@@ -9,7 +9,7 @@ int sair;
 int main() {
     
     printf("-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("O que você quer acessar?\n -> Controle de Estoque; (a)\n -> Controle Financeiro; (b)\n -> Vendas (c)\n -> Sair. (d)");
+    printf("O que você quer acessar?\n -> Controle de Estoque; (a)\n -> Controle Financeiro; (b)\n -> Vendas (c)\n -> Sair. (d)\n");
     printf("-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("Escolha o menu -> ");
     scanf("%c" , &escolha);
