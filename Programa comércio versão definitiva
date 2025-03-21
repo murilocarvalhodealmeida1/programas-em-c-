@@ -45,10 +45,10 @@ void menuPrincipal() {
 // Exibe a quantidade de produtos disponíveis no estoque
 void controleEstoque() {
     printf("\n=== Controle de Estoques ===\n");
-    printf("Produto A: %d unidades\n", estoqueA);
-    printf("Produto B: %d unidades\n", estoqueB);
-    printf("Produto C: %d unidades\n", estoqueC);
-    printf("Produto D: %d unidades\n", estoqueD);
+    printf("Binquedo Ben 10: %d unidades\n", estoqueA);
+    printf("Brinquedo Patati: %d unidades\n", estoqueB);
+    printf("Brinquedo Kick Buttowsk: %d unidades\n", estoqueC);
+    printf("Eren Attack on Titan: %d unidades\n", estoqueD);
 }
 
 // Permite registrar despesas, receitas e consultar saldo
@@ -85,10 +85,10 @@ void vendas() {
     int codigo, quantidade;
     float preco = 0.0;
     printf("\n=== Vendas ===\n");
-    printf("1 - Produto A - R$10.00\n");
-    printf("2 - Produto B - R$20.00\n");
-    printf("3 - Produto C - R$15.00\n");
-    printf("4 - Produto D - R$25.00\n");
+    printf("1 - Boneco Ben 10 - R$10.00\n");
+    printf("2 - Boneco Patati - R$20.00\n");
+    printf("3 - Boneco Kick Buttowsk - R$15.00\n");
+    printf("4 - Eren Attack on Titan - R$25.00\n");
     printf("5 - Voltar\n");
     printf("Escolha um produto: ");
     scanf("%d", &codigo);
