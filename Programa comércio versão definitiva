@@ -38,6 +38,7 @@ void menuPrincipal() {
             break; // Sai do loop e encerra o programa
         } else {
             printf("Opcao invalida!\n");
+            break;
         }
     }
 }
