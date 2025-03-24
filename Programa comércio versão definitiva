@@ -19,7 +19,7 @@ int main() {
 void menuPrincipal() {
     int opcao;
     while (1) { // Loop infinito para manter o menu sempre acessível
-        printf("\n=== Menu Principal ===\n");
+        printf("\n-=-=-=- Menu Principal -=-=-=-\n");
         printf("1. Controle de Estoques\n");
         printf("2. Controle Financeiro\n");
         printf("3. Vendas\n");
@@ -45,8 +45,8 @@ void menuPrincipal() {
 
 // Exibe a quantidade de produtos disponíveis no estoque
 void controleEstoque() {
-    printf("\n=== Controle de Estoques ===\n");
-    printf("Binquedo Ben 10: %d unidades\n", estoqueA);
+    printf("\n-=-=-=- Controle de Estoques -=-=-=-\n");
+    printf("Brinquedo Ben 10: %d unidades\n", estoqueA);
     printf("Brinquedo Patati: %d unidades\n", estoqueB);
     printf("Brinquedo Kick Buttowsk: %d unidades\n", estoqueC);
     printf("Eren Attack on Titan: %d unidades\n", estoqueD);
@@ -57,7 +57,7 @@ void controleFinanceiro() {
     int opcao;
     float valor;
     while (1) {
-        printf("\n=== Controle Financeiro ===\n");
+        printf("\n-=-=-=- Controle Financeiro -=-=-=-\n");
         printf("Saldo atual: R$%.2f\n", saldo);
         printf("1. Registrar Despesas\n");
         printf("2. Registrar Receitas\n");
@@ -86,7 +86,7 @@ void controleFinanceiro() {
 void vendas() {
     int codigo, quantidade;
     float preco = 0.0;
-    printf("\n=== Vendas ===\n");
+    printf("\n-=-=-=- Vendas -=-=-=-\n");
     printf("1 - Boneco Ben 10 - R$10.00\n");
     printf("2 - Boneco Patati - R$20.00\n");
     printf("3 - Boneco Kick Buttowsk - R$15.00\n");
