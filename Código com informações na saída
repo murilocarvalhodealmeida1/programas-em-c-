@@ -1,0 +1,141 @@
+#include <stdio.h>
+
+// Variáveis globais para controle de estoque e financeiro
+int estoqueA = 50, estoqueB = 30, estoqueC = 20, estoqueD = 15, vendasT;
+float saldo = 0.;
+
+// Declaração das funções
+void menuPrincipal();
+void controleEstoque();
+void controleFinanceiro();
+void vendas();
+
+int main() {
+    menuPrincipal(); // menu principal
+    return 0;
+}
+
+// Exibe o menu principal
+void menuPrincipal() {
+    int opcao;
+    while (1) { // Loop 
+        printf("\n-=-=-=- Menu Principal -=-=-=-\n");
+        printf("1. Controle de Estoques\n");
+        printf("2. Controle Financeiro\n");
+        printf("3. Vendas\n");
+        printf("4. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        
+        if (opcao == 1) {
+            controleEstoque(); // função de CE
+        } else if (opcao == 2) {
+            controleFinanceiro(); // função de CF
+        } else if (opcao == 3) {
+            vendas(); // função de vendas
+        } else if (opcao == 4) {
+            vendasT = saldo / 10;
+            printf(". \n");
+            printf(". \n");
+            printf(". \n");
+            printf(". \n");
+            printf(". \n");
+            printf(". \n");
+            printf("-=-=-=--=-=-=--=-=-=- \n");
+            printf("- \n");
+            printf("VENDAS %d \n", vendasT);
+            printf("- \n");
+            printf("SALDO R$ %f \n", saldo);
+            printf("- \n");
+            printf("-=-=-=--=-=-=--=-=-=- \n");
+            printf("Saindo... \n");
+            break; // Sai do loop e encerra o programa
+        } else {
+            printf("Opcao invalida!\n");
+            break;
+        }
+    }
+}
+
+// Exibe a quantidade de produtos disponíveis no estoque
+void controleEstoque() {
+    printf("\n-=-=-=- Controle de Estoques -=-=-=-\n");
+    printf("Brinquedo Ben 10: %d unidades\n", estoqueA);
+    printf("Brinquedo Patati: %d unidades\n", estoqueB);
+    printf("Brinquedo Kick Buttowsk: %d unidades\n", estoqueC);
+    printf("Eren Attack on Titan: %d unidades\n", estoqueD);
+}
+
+// Permite registrar despesas, receitas e consultar saldo
+void controleFinanceiro() {
+    int opcao;
+    float valor;
+    while (1) {
+        printf("\n-=-=-=- Controle Financeiro -=-=-=-\n");
+        printf("Saldo atual: R$%.2f\n", saldo);
+        printf("1. Registrar Despesas\n");
+        printf("2. Registrar Receitas\n");
+        printf("3. Voltar\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        
+        if (opcao == 1) {
+            printf("Digite o valor da despesa: ");
+            scanf("%f", &valor);
+            saldo -= valor; // Subtrai a despesa do saldo
+        } else if (opcao == 2) {
+            printf("Digite o valor da receita: ");
+            scanf("%f", &valor);
+            saldo += valor; // Adiciona a receita ao saldo
+        } else if (opcao == 3) {
+            break; // Retorna ao menu principal
+        } else {
+            printf("Opcao invalida!\n");
+            break;
+        }
+    }
+}
+
+// Realiza vendas e atualiza estoque e saldo
+void vendas() {
+    int codigo, quantidade;
+    float preco = 0.0;
+    printf("\n-=-=-=- Vendas -=-=-=-\n");
+    printf("1 - Boneco Ben 10 - R$10.00\n");
+    printf("2 - Boneco Patati - R$20.00\n");
+    printf("3 - Boneco Kick Buttowsk - R$15.00\n");
+    printf("4 - Eren Attack on Titan - R$25.00\n");
+    printf("5 - Voltar\n");
+    printf("Escolha um produto: ");
+    scanf("%d", &codigo);
+    
+    if (codigo >= 1 && codigo <= 4) {
+        printf("Digite a quantidade: ");
+        scanf("%d", &quantidade);
+        
+        // Verifica o estoque e realiza a venda
+        if (codigo == 1 && quantidade <= estoqueA) {
+            estoqueA -= quantidade;
+            preco = 10.00 * quantidade;
+        } else if (codigo == 2 && quantidade <= estoqueB) {
+            estoqueB -= quantidade;
+            preco = 20.00 * quantidade;
+        } else if (codigo == 3 && quantidade <= estoqueC) {
+            estoqueC -= quantidade;
+            preco = 15.00 * quantidade;
+        } else if (codigo == 4 && quantidade <= estoqueD) {
+            estoqueD -= quantidade;
+            preco = 25.00 * quantidade;
+        } else {
+            printf("Estoque insuficiente!\n");
+            return;
+        }
+        saldo += preco; // Adiciona o valor da venda ao saldo financeiro
+        printf("Venda realizada! Total: R$%.2f\n", preco);
+    } else if (codigo == 5) {
+        return; // Retorna ao menu principal
+    } else {
+        printf("Codigo invalido!\n");
+        return;
+    }
+}
