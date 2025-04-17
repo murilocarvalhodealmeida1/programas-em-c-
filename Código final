@@ -2,64 +2,62 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_PRODUTOS 100
+#define MAX_PRODUTOS 100  // Define o número máximo de produtos que o sistema pode gerenciar
 
+// Definindo uma estrutura para os produtos
 struct Produto {
-    char nome[50];
-    float preco;
-    int estoque;
+    char nome[50];   // Nome do produto
+    float preco;     // Preço do produto
+    int estoque;     // Quantidade em estoque
+    int estoqueOriginal; // Quantidade original do estoque
+    int vendidos;    // Quantidade vendida
 };
 
-struct Produto produtos[MAX_PRODUTOS];
-int vendasPorProduto[MAX_PRODUTOS] = {0}; // NOVO: Armazena quantidade vendida de cada produto
+struct Produto produtos[MAX_PRODUTOS];  // Array para armazenar os produtos
+int totalProdutos = 4;  // Quantidade inicial de produtos no estoque
+float saldo = 0.0;      // Saldo atual da loja
 
-int totalProdutos = 4;
-float saldo = 0.0;
-float lucro = 0.0;
-int totalVendas = 0;
-
-// Limpa o buffer do teclado
+// Função para limpar o buffer do teclado
 void limparBuffer() {
     int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF); // Limpa até o final da linha
 }
 
-// Lê inteiro com segurança
+// Função para ler um número inteiro com segurança
 int lerInt() {
     int num;
     while (scanf("%d", &num) != 1) {
-        limparBuffer();
+        limparBuffer();  // Limpa o buffer se o número não for válido
         printf("Digite um número válido: ");
     }
-    limparBuffer();
+    limparBuffer();  // Limpa o buffer depois de ler o número
     return num;
 }
 
-// Lê float com segurança
+// Função para ler um número decimal com segurança
 float lerFloat() {
     float num;
     while (scanf("%f", &num) != 1) {
-        limparBuffer();
+        limparBuffer();  // Limpa o buffer se o número não for válido
         printf("Digite um valor válido: ");
     }
-    limparBuffer();
+    limparBuffer();  // Limpa o buffer depois de ler o número
     return num;
 }
 
-// Mostrar relatório final com lucro e produtos vendidos
+// Função para mostrar o relatório final
 void mostrarRelatorio() {
     printf("\n--- RELATÓRIO FINAL ---\n");
-    printf("Total de vendas realizadas: %d\n", totalVendas);
-    printf("Lucro total com vendas: R$%.2f\n", lucro);
-    printf("\nProdutos vendidos:\n");
+    printf("Lucro: R$%.2f\n", saldo);  // Exibe o lucro total (saldo)
+    printf("Produtos vendidos:\n");
     for (int i = 0; i < totalProdutos; i++) {
-        if (vendasPorProduto[i] > 0) {
-            printf("- %s: %d unidades\n", produtos[i].nome, vendasPorProduto[i]);
+        if (produtos[i].vendidos > 0) {  // Só exibe produtos que foram vendidos
+            printf("%s | R$%.2f | Vendido: %d unidades\n", produtos[i].nome, produtos[i].preco, produtos[i].vendidos);
         }
     }
 }
 
-// Menu de estoque
+// Função para exibir e gerenciar o estoque
 void menuEstoque() {
     int escolha;
     printf("\n--- ESTOQUE ---\n");
@@ -67,7 +65,8 @@ void menuEstoque() {
         printf("%d - %s | R$%.2f | Estoque: %d\n", i + 1, produtos[i].nome, produtos[i].preco, produtos[i].estoque);
     }
     printf("1. Remover um produto do sistema\n");
-    printf("2. Voltar ao menu\n");
+    printf("2. Adicionar quantidade a um produto\n");
+    printf("3. Voltar ao menu\n");
     printf("Escolha: ");
     escolha = lerInt();
 
@@ -77,17 +76,27 @@ void menuEstoque() {
         if (p >= 0 && p < totalProdutos) {
             for (int i = p; i < totalProdutos - 1; i++) {
                 produtos[i] = produtos[i + 1];
-                vendasPorProduto[i] = vendasPorProduto[i + 1];
             }
             totalProdutos--;
             printf("Produto removido com sucesso!\n");
         } else {
             printf("Produto inválido!\n");
         }
+    } else if (escolha == 2) {
+        printf("Digite o número do produto para adicionar quantidade: ");
+        int p = lerInt() - 1;
+        if (p >= 0 && p < totalProdutos) {
+            printf("Quantidade a adicionar: ");
+            int qtd = lerInt();
+            produtos[p].estoque += qtd;
+            printf("Quantidade de %s aumentada! Novo estoque: %d\n", produtos[p].nome, produtos[p].estoque);
+        } else {
+            printf("Produto inválido!\n");
+        }
     }
 }
 
-// Menu financeiro
+// Função para exibir o menu financeiro
 void menuFinanceiro() {
     printf("\n--- FINANCEIRO ---\n");
     printf("Saldo atual: R$%.2f\n", saldo);
@@ -110,25 +119,117 @@ void menuFinanceiro() {
     }
 }
 
+// Função para realizar a venda de um produto
+void venderProduto() {
+    printf("\n--- VENDER PRODUTO ---\n");
+    for (int i = 0; i < totalProdutos; i++) {
+        printf("%d - %s | R$%.2f | Estoque: %d\n", i + 1, produtos[i].nome, produtos[i].preco, produtos[i].estoque);
+    }
+    printf("Escolha o produto: ");
+    int p = lerInt() - 1;
+    if (p < 0 || p >= totalProdutos) {
+        printf("Produto inválido!\n");
+    } else {
+        printf("Quantidade: ");
+        int q = lerInt();
+        if (q > produtos[p].estoque) {
+            printf("Estoque insuficiente!\n");
+        } else {
+            produtos[p].estoque -= q;
+            produtos[p].vendidos += q;
+            float total = q * produtos[p].preco;
+            saldo += total;
+            printf("Venda feita! Total: R$%.2f\n", total);
+        }
+    }
+}
+
+// Função para adicionar um produto ou aumentar a quantidade de um produto existente
+void adicionarProduto() {
+    printf("\n--- ADICIONAR ESTOQUE OU PRODUTO ---\n");
+    printf("Nome do produto: ");
+    char nome[50];
+    fgets(nome, sizeof(nome), stdin);
+    nome[strcspn(nome, "\n")] = '\0';
+
+    int index = -1;
+    for (int i = 0; i < totalProdutos; i++) {
+        if (strcmp(produtos[i].nome, nome) == 0) {
+            index = i;
+            break;
+        }
+    }
+
+    printf("Preço: R$");
+    float preco = lerFloat();
+    printf("Quantidade: ");
+    int q = lerInt();
+
+    float custo = preco * q;
+    if (saldo >= custo) {
+        if (index != -1) {
+            produtos[index].estoque += q;
+            saldo -= custo;
+            printf("Estoque adicionado ao produto existente.\n");
+        } else {
+            if (totalProdutos < MAX_PRODUTOS) {
+                strcpy(produtos[totalProdutos].nome, nome);
+                produtos[totalProdutos].preco = preco;
+                produtos[totalProdutos].estoque = q;
+                produtos[totalProdutos].estoqueOriginal = q;
+                produtos[totalProdutos].vendidos = 0;
+                totalProdutos++;
+                saldo -= custo;
+                printf("Novo produto adicionado com sucesso.\n");
+            } else {
+                printf("Limite de produtos atingido!\n");
+            }
+        }
+    } else {
+        printf("Saldo insuficiente para essa operação!\n");
+    }
+}
+
+// Função para limpar a tela
+void limparTela() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+    printf("Tela limpa!\n");
+}
+
+// Função principal do programa
 int main() {
+    // Inicializando os produtos no estoque
     strcpy(produtos[0].nome, "Ben 10");
     produtos[0].preco = 10.0;
     produtos[0].estoque = 50;
+    produtos[0].estoqueOriginal = 50;
+    produtos[0].vendidos = 0;
 
     strcpy(produtos[1].nome, "Patati");
     produtos[1].preco = 20.0;
     produtos[1].estoque = 30;
+    produtos[1].estoqueOriginal = 30;
+    produtos[1].vendidos = 0;
 
     strcpy(produtos[2].nome, "Kick Buttowski");
     produtos[2].preco = 15.0;
     produtos[2].estoque = 20;
+    produtos[2].estoqueOriginal = 20;
+    produtos[2].vendidos = 0;
 
     strcpy(produtos[3].nome, "Eren AOT");
     produtos[3].preco = 25.0;
     produtos[3].estoque = 15;
+    produtos[3].estoqueOriginal = 15;
+    produtos[3].vendidos = 0;
 
     int opcao;
 
+    // Loop do menu principal
     do {
         printf("\n=== MENU PRINCIPAL ===\n");
         printf("1. Ver Estoque\n");
@@ -141,108 +242,29 @@ int main() {
         opcao = lerInt();
 
         if (opcao == 1) {
-            menuEstoque();
+            menuEstoque();  // Chama o menu de estoque
 
         } else if (opcao == 2) {
-            menuFinanceiro();
+            menuFinanceiro();  // Chama o menu financeiro
 
         } else if (opcao == 3) {
-            printf("\n--- VENDER PRODUTO ---\n");
-            for (int i = 0; i < totalProdutos; i++) {
-                printf("%d - %s | R$%.2f | Estoque: %d\n", i + 1, produtos[i].nome, produtos[i].preco, produtos[i].estoque);
-            }
-            printf("Escolha o produto: ");
-            int p = lerInt() - 1;
-            if (p < 0 || p >= totalProdutos) {
-                printf("Produto inválido!\n");
-            } else {
-                printf("Quantidade: ");
-                int q = lerInt();
-                if (q > produtos[p].estoque) {
-                    printf("Estoque insuficiente!\n");
-                } else {
-                    printf("Forma de pagamento:\n");
-                    printf("1. Dinheiro (10%% de desconto)\n");
-                    printf("2. Cartão (sem desconto)\n");
-                    printf("Escolha: ");
-                    int forma = lerInt();
-
-                    float total = q * produtos[p].preco;
-
-                    if (forma == 1) {
-                        total *= 0.9; // 10% de desconto
-                    }
-
-                    produtos[p].estoque -= q;
-                    saldo += total;
-                    lucro += total;
-                    totalVendas++;
-                    vendasPorProduto[p] += q;
-
-                    printf("Venda feita! Total: R$%.2f\n", total);
-                }
-            }
+            venderProduto();  // Chama a função de vender produto
 
         } else if (opcao == 4) {
-            printf("\n--- ADICIONAR ESTOQUE OU PRODUTO ---\n");
-            printf("Nome do produto: ");
-            char nome[50];
-            fgets(nome, sizeof(nome), stdin);
-            nome[strcspn(nome, "\n")] = '\0';
-
-            int index = -1;
-            for (int i = 0; i < totalProdutos; i++) {
-                if (strcmp(produtos[i].nome, nome) == 0) {
-                    index = i;
-                    break;
-                }
-            }
-
-            printf("Preço: R$");
-            float preco = lerFloat();
-            printf("Quantidade: ");
-            int q = lerInt();
-
-            float custo = preco * q;
-            if (saldo >= custo) {
-                if (index != -1) {
-                    produtos[index].estoque += q;
-                    saldo -= custo;
-                    printf("Estoque adicionado ao produto existente.\n");
-                } else {
-                    if (totalProdutos < MAX_PRODUTOS) {
-                        strcpy(produtos[totalProdutos].nome, nome);
-                        produtos[totalProdutos].preco = preco;
-                        produtos[totalProdutos].estoque = q;
-                        totalProdutos++;
-                        saldo -= custo;
-                        printf("Novo produto adicionado com sucesso.\n");
-                    } else {
-                        printf("Limite de produtos atingido!\n");
-                    }
-                }
-            } else {
-                printf("Saldo insuficiente para essa operação!\n");
-            }
+            adicionarProduto();  // Chama a função de adicionar produto ou estoque
 
         } else if (opcao == 5) {
-            #ifdef _WIN32
-                system("cls");
-            #else
-                system("clear");
-            #endif
-            printf("Tela limpa!\n");
+            limparTela();  // Limpa a tela
 
         } else if (opcao == 6) {
-            mostrarRelatorio();
+            mostrarRelatorio();  // Exibe o relatório final
             printf("Saindo...\n");
 
         } else {
-            printf("Opção inválida!\n");
+            printf("Opção inválida!\n");  // Caso a opção seja inválida
         }
 
     } while (opcao != 6);
 
     return 0;
 }
-
